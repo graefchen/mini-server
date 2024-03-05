@@ -1,6 +1,9 @@
 # mini-server
 
-A small web server written in Rust (you probably should not use it).
+A small web server written in Rust.
+
+> [!CAUTION]
+> Do not use this server. It is bad and does not handle request in a good way!
 
 ## references
 

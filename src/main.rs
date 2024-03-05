@@ -72,14 +72,16 @@ fn handle_connection(mut stream: TcpStream) {
     rdr.read_line(&mut l).unwrap();
     match l.trim().split(' ').collect::<Vec<_>>().as_slice() {
         ["GET", resource, "HTTP/1.1"] => {
-            stream.write_all(&handle_request(resource.to_string())).unwrap();
+            stream
+                .write_all(&handle_request(resource.to_string()))
+                .unwrap();
         }
         _ => {}
     };
 }
 
 fn main() {
-    let listener = TcpListener::bind("127.0.0.1:3000").unwrap();
+    let listener = TcpListener::bind("0.0.0.0:3000").unwrap();
     for stream in listener.incoming() {
         let stream = stream.unwrap();
         handle_connection(stream.try_clone().unwrap());
